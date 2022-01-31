@@ -1,0 +1,28 @@
+{
+  "name": "matrix-chat",
+  "version": "1.0.0",
+  "description": "Projeto desenvolvido no Imersão ReactJS da Alura",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Martarelli/Matrix-Chat.git"
+  },
+  "author": "Renan Martarelli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Martarelli/Matrix-Chat/issues"
+  },
+  "homepage": "https://github.com/Martarelli/Matrix-Chat#readme",
+  "dependencies": {
+    "next": "^12.0.9",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
