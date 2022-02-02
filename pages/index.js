@@ -1,39 +1,11 @@
 import appConfig from "../config.json";
-import { Box, Button, Text, TextField, Image } from "@skynexui/components";
+import { Box, Button, Text, Image, TextField } from "@skynexui/components";
+import React from "react";
+import { useRouter } from 'next/router'
 
-function GlobalStyle() {
-  return (
-    <style global jsx>{`
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        list-style: none;
-      }
-      body {
-        font-family: "Open Sans", sans-serif;
-      }
-      /* App fit Height */
-      html,
-      body,
-      #__next {
-        min-height: 100vh;
-        display: flex;
-        flex: 1;
-      }
-      #__next {
-        flex: 1;
-      }
-      #__next > * {
-        flex: 1;
-      }
-      /* ./App fit Height */
-    `}</style>
-  );
-}
 
 function Title(props) {
-  console.log(props);
+  // console.log(props);
   const Tag = props.tag || h1;
   return (
     <>
@@ -63,11 +35,12 @@ function Title(props) {
 // export default HomePage;
 
 export default function PaginaInicial() {
-  const username = "peas";
+  //const username = "martarelli";
+  const [username, setUsername] = React.useState(" ");
+  const roteamento = useRouter();
 
   return (
     <>
-      <GlobalStyle />
       <Box
         styleSheet={{
           display: "flex",
@@ -81,6 +54,7 @@ export default function PaginaInicial() {
           backgroundBlendMode: "multiply",
         }}
       >
+
         <Box
           styleSheet={{
             display: "flex",
@@ -99,9 +73,16 @@ export default function PaginaInicial() {
             backgroundColor: appConfig.theme.colors.neutrals[700],
           }}
         >
+
           {/* Formulário */}
           <Box
             as="form"
+            onSubmit={function(infosDoEvento) {
+              infosDoEvento.preventDefault();
+              console.log("alguem submeteu");
+              // window.location.href = '/chat';
+              roteamento.push('/chat')
+            }}
             styleSheet={{
               display: "flex",
               flexDirection: "column",
@@ -112,6 +93,7 @@ export default function PaginaInicial() {
               marginBottom: "32px",
             }}
           >
+            
             <Title tag="h2">Boas vindas de volta!</Title>
             <Text
               variant="body3"
@@ -123,7 +105,27 @@ export default function PaginaInicial() {
               {appConfig.name}
             </Text>
 
+            {/* <input 
+            type="text"
+            value={username}
+            onChange={function handler(event){
+              console.log("usuario digitou", event.target.value)
+              //Onde tá o valor?
+              const valor = event.target.value;
+              //trocar o valor da variável
+              setUsername(valor);
+            }}
+            /> */}
+
             <TextField
+              value={username}
+              onChange={function handler(event) {
+                console.log("usuario digitou", event.target.value);
+                //Onde tá o valor?
+                const valor = event.target.value;
+                //trocar o valor da variável
+                setUsername(valor);
+              }}
               fullWidth
               textFieldColors={{
                 neutral: {
@@ -134,6 +136,7 @@ export default function PaginaInicial() {
                 },
               }}
             />
+
             <Button
               type="submit"
               label="Entrar"
